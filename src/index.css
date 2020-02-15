@@ -13,11 +13,11 @@ code {
 }
 
 .container {
-  width: 650px;
+  width: 750px;
   /* height: 175px; */
   margin: auto;
-  /* display: flex;
-  flex-wrap: wrap; */
+  /* display: flex; */
+  flex-wrap: wrap;
   border: 0px solid rgb(124, 103, 103);
 }
 .space {
@@ -42,13 +42,17 @@ code {
   background-color: rgb(54, 245, 16);
   font-weight: bolder;
 }
+.post-container {
+  width: 750px;
+  display: flex;
+  flex-wrap: wrap;
+}
 .post {
   width: 450px;
   height: 60px;
   text-align: center;
   background-color: rgb(127, 212, 255);
-  /* font-weight: bolder; */
-  font-size: 20px
+  font-size: 15px
 }
 .delete {
   height: 52px;

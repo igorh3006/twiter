@@ -6,21 +6,25 @@ type PostProps = {
     readonly onPostDelete: (id: string) => void
 }
 
-// 1. add date with formating using Moment.js libray
-// 2. 
+// 1. Add date with formating using Moment.js libray
+// 2. Change posts order
+// 3. Add a possibiliy to take a photo(*also allow to load photo from computer)
 
 const Post: FunctionComponent<PostProps> = (props) => {
     const postsArray = props.postsArray.map(post =>
         <li key={post.id}>
-            <button className='post'>{post.text}</button>
-            <button className='delete' onClick={() => props.onPostDelete(post.id)}>remove</button>
+            <div className='post-container'>
+                <div className='post'>{post.text}</div>
+                <button className='delete' onClick={() => props.onPostDelete(post.id)}>remove</button>
+                <div className='space'></div>
+            </div>
         </li>
     )
 
     return (
         <ol className='ol'>{postsArray}</ol>
     )
-}  
+}
 
 type AppState = {
     input: string,
@@ -48,7 +52,7 @@ export default class App extends Component<{}, AppState> {
                     value={this.state.input}
                     onChange={this.onChange}
                 />
-                <button className='add' onClick={this.createPostArray}>ADD</button>
+                <button className='add' onClick={this.createPost}>ADD</button>
                 <div>____________________________________________________________</div>
                 <label className='label'>client POSTS</label>
                 <Post postsArray={this.state.postsArray} onPostDelete={this.onPostDelete} />
@@ -62,15 +66,15 @@ export default class App extends Component<{}, AppState> {
         })
     }
 
-    private createPostArray = () => {
+    private createPost = () => {
         if (this.state.input) {
             this.setState(
                 {
                     input: '',
-                    postsArray: [...this.state.postsArray, {
+                    postsArray: [{
                         id: this.postId.toString(),
                         text: this.state.input
-                    }]
+                    }, ...this.state.postsArray]
                 }
             )
             this.postId++
