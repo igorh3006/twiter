@@ -1,8 +1,9 @@
 import React, { Component, FunctionComponent } from "react";
 import './index.css';
+var moment = require('moment');
 
 type PostProps = {
-    readonly postsArray: ReadonlyArray<{ id: string, text: string }>
+    readonly postsArray: ReadonlyArray<{ id: string, text: string, time: string }>
     readonly onPostDelete: (id: string) => void
 }
 
@@ -14,7 +15,10 @@ const Post: FunctionComponent<PostProps> = (props) => {
     const postsArray = props.postsArray.map(post =>
         <li key={post.id}>
             <div className='post-container'>
-                <div className='post'>{post.text}</div>
+                <div>
+                    <div className='post'><p>{post.text}</p></div>
+                    <div className='post-time'>{post.time}</div>
+                </div>
                 <button className='delete' onClick={() => props.onPostDelete(post.id)}>remove</button>
                 <div className='space'></div>
             </div>
@@ -28,7 +32,7 @@ const Post: FunctionComponent<PostProps> = (props) => {
 
 type AppState = {
     input: string,
-    postsArray: ReadonlyArray<{ id: string, text: string }>
+    postsArray: ReadonlyArray<{ id: string, text: string, time: string }>
 }
 
 export default class App extends Component<{}, AppState> {
@@ -38,7 +42,7 @@ export default class App extends Component<{}, AppState> {
         super(props)
         this.state = {
             input: '',
-            postsArray: []
+            postsArray: [],
         }
     }
 
@@ -73,7 +77,8 @@ export default class App extends Component<{}, AppState> {
                     input: '',
                     postsArray: [{
                         id: this.postId.toString(),
-                        text: this.state.input
+                        text: this.state.input,
+                        time: moment().format('lll')
                     }, ...this.state.postsArray]
                 }
             )

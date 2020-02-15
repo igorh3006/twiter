@@ -50,16 +50,26 @@ code {
 .post {
   width: 450px;
   height: 60px;
+  margin: 0 auto;
   text-align: center;
   background-color: rgb(127, 212, 255);
   font-size: 15px
 }
+.post-time {
+  width: 450px;
+  height: 15px;
+  background-color: rgb(127, 212, 255);
+  text-align: right;
+  font-size: 10px
+}
 .delete {
-  height: 52px;
+  width: 55px;
+  height: 50px;
   border-radius: 20px;
   background-color: rgb(231, 143, 143);
+  text-align: center;
   /* font-weight: bolder; */
-  font-size: 15px
+  font-size: 13px
 }
 .label {
   font-weight: bolder;
