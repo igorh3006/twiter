@@ -6,11 +6,14 @@ type PostProps = {
     readonly onPostDelete: (id: string) => void
 }
 
+// 1. add date with formating using Moment.js libray
+// 2. 
+
 const Post: FunctionComponent<PostProps> = (props) => {
     const postsArray = props.postsArray.map(post =>
         <li key={post.id}>
             <button className='post'>{post.text}</button>
-            <button className='delete' onClick={() => props.onPostDelete(post.id)}>delete</button>
+            <button className='delete' onClick={() => props.onPostDelete(post.id)}>remove</button>
         </li>
     )
 
@@ -56,8 +59,7 @@ export default class App extends Component<{}, AppState> {
         event.preventDefault();
         this.setState({
             input: event.target.value
-        }
-        )
+        })
     }
 
     private createPostArray = () => {
@@ -79,7 +81,7 @@ export default class App extends Component<{}, AppState> {
         this.setState(
             {
                 postsArray: this.state.postsArray.filter(post => post.id !== id)
-            }  
+            }
         )
     }
 }
